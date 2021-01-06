@@ -10,6 +10,8 @@ import { ScrollView } from 'react-native-gesture-handler';
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>  
                     <Text>Home Screen</Text> 
                     <Button title='Go To datafetch ' onPress={() => navigation.navigate('DataScreen')}/>  
+                    <Button title='Go To demo ' onPress={() => navigation.navigate('DemoScreen')}/>  
+                    <Button title='Go To Reducer ' onPress={() => navigation.navigate('ReducerScreen')}/>  
                 </View>  
             </ScrollView>
         );  
