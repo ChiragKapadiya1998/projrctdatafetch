@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './src/HomeScreen';
 import Data from './src/DataScreen';
 import DemoScreen from './src/DemoScreen';
-import Reducer from './src/Reducer';
+import ReducerScreen from "./src/ReducerScreen";
 
 const Stack = createStackNavigator();
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DataScreen" component={Data} />
         <Stack.Screen name="DemoScreen" component={DemoScreen} />
-        <Stack.Screen name="ReducerScreen" component={Reducer} />
+        <Stack.Screen name="ReducerScreen" component={ReducerScreen} />
       </Stack.Navigator>
      </NavigationContainer>
     );
