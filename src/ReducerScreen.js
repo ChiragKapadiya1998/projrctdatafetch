@@ -4,29 +4,6 @@ import { ScrollView,  } from 'react-native-gesture-handler';
 import CardScreen from './compontnes/CardScreen';
 
 
-const reducer=(state,action)=>{
-    switch(action.type){
-        case "DATA_FATCH":
-            return {
-               ...state,
-                name:action.Name,
-                username:action.UserName,
-                email:action.Email,
-                phone:action.Phone,
-                street:action.Street,
-                suite:action.Suite,
-                city:action.City,
-                zipcode:action.Zipcode,
-                website:action.WebSite
-            }
-          default :
-          return state;
-    }
-  
-  }
-
-
-
 const ReducerScreen = () => {
 
     const List={
@@ -38,7 +15,8 @@ const ReducerScreen = () => {
         website:"ck",
         
     };
-    const [datas ,dispatch]=useReducer(reducer,List)
+    
+    const [datas ,setDatas]=useReducer(reducer)
 
 
     const datafatch=()=>{
@@ -64,30 +42,6 @@ const ReducerScreen = () => {
         <View>
             <Button title="Add to the data" onPress={()=>datafatch()}/>
           
-               
-           {/* <FlatList
-             data={List}
-             keyExtractor={item=>item}
-             renderItem={(item)=>{
-               return( 
-                <TouchableOpacity >
-                    <View style={styles.card} >
-                        <Text>Name : {item.name} </Text>
-                        <Text>UserName :{item.username}</Text>
-                        <Text>Email  :{item.email}</Text>
-                        <Text>MoblieNo :{item.phone}</Text>
-                        <Text>Address :{item.address.street},{item.address.suite},{item.address.city},{item.address.zipcode}</Text>
-                        <Text>Website :{item.website}</Text>
-                    </View>
-                    </TouchableOpacity>
-               );
-             }
-            
-            }
-           /> */}
-
-
-
            <CardScreen 
               Name={datas.name}
               UserName={datas.username}
