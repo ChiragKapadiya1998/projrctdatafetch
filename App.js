@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './src/HomeScreen';
-import Data from './src/DataScreen';
-import DemoScreen from './src/DemoScreen';
-import ReducerScreen from "./src/ReducerScreen";
+import HomeScreen from './src/Screen/HomeScreen';
+import Data from './src/Screen/Data';
+import DemoScreen from './src/Screen/DemoScreen';
+
 
 const Stack = createStackNavigator();
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DataScreen" component={Data} />
         <Stack.Screen name="DemoScreen" component={DemoScreen} />
-        <Stack.Screen name="ReducerScreen" component={ReducerScreen} />
+        <Stack.Screen name="Data" component={Data} />
       </Stack.Navigator>
      </NavigationContainer>
     );
