@@ -1,5 +1,5 @@
 import React,{useContext,useEffect,useState} from 'react'
-import { StyleSheet, Text, View ,FlatList, ScrollView,TextInput,TouchableOpacity,Modal,TouchableHighlight} from 'react-native'
+import { StyleSheet, View ,FlatList, ScrollView,TextInput,TouchableOpacity,Modal,TouchableHighlight,Image} from 'react-native'
 
 import CardCompontnes from '../compontnes/CardCompontnes';
 import PopBox from '../compontnes/PopBox';
@@ -9,6 +9,7 @@ const CreateListScreen = ({navigation}) => {
     const {state,getDataPost}=useContext(AuthContext);
     const [serach,setSerach]=useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const [data,setData]=useState('');
 
     useEffect(() => {
             getDataPost();
@@ -17,7 +18,8 @@ const CreateListScreen = ({navigation}) => {
 
   
     return (<>
-        <ScrollView>
+
+        <ScrollView >
             <View>
                 <TextInput 
                    style={styles.textinpt}
@@ -29,19 +31,19 @@ const CreateListScreen = ({navigation}) => {
                 />
                 <FlatList 
                  data={state.filter((item)=>{
-                    if(serach==""){
-                        return item;
-                    }else if( item.id.toString().includes(serach.toString()) ||
-                     item.first_name.toLowerCase().includes(serach.toLowerCase()) ||
-                     item.last_name.toLowerCase().includes(serach.toLowerCase()) ||
-                     item.email.toLowerCase().includes(serach.toLowerCase()) ){
-                        return item;
-                    }
-                })}
+                     if(serach==""){
+                         return item;
+                        }else if( item.id.toString().includes(serach.toString()) ||
+                        item.first_name.toLowerCase().includes(serach.toLowerCase()) ||
+                        item.last_name.toLowerCase().includes(serach.toLowerCase()) ||
+                        item.email.toLowerCase().includes(serach.toLowerCase()) ){
+                            return item;
+                        }
+                    })}
                  keyExtractor={item=>item.id}
                  renderItem={({item})=>{
                      return(
-                         <TouchableOpacity onPress={()=> navigation.navigate("Data" ,Id=item)}>
+                         <TouchableOpacity onPress={()=>{setModalVisible(!modalVisible),setData(item)}}>
                              <CardCompontnes  
                                 Id={item.id} 
                                 First_Name={item.first_name}
@@ -51,11 +53,11 @@ const CreateListScreen = ({navigation}) => {
                              />
                          </TouchableOpacity>
                      )
-                 }}
+                    }}
                 />
             </View>
-            
         </ScrollView>
+         <PopBox  show={modalVisible} hide={setModalVisible} datas={data} />
         </>
     )
 }
@@ -69,5 +71,24 @@ const styles = StyleSheet.create({
         margin: '4%',
         padding:10,
         fontSize:25,
-    }
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
+      },
+      modalView: {
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 5,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+      },
 })
