@@ -27,7 +27,6 @@ const CreateListScreen = ({navigation}) => {
                    onChangeText={event =>{setSerach(event)}}
                    placeholder="serach"
                    autoCapitalize='none'
-                   autoCorrect='none'
                 />
                 <FlatList 
                  data={state.filter((item)=>{
