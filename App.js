@@ -7,7 +7,6 @@ import DemoScreen from './src/Screen/DemoScreen';
 import { Provider as AuthPovider } from "./src/context/AuthConext";
 import CreateListScreen from './src/Screen/CreateListScreen'
 
-
 const Stack = createStackNavigator();
 class App extends Component {
 

@@ -1,15 +1,23 @@
-import React,{useState} from 'react'
-import { StyleSheet, Text, View,TouchableHighlight,SafeAreaView,Image,Modal} from 'react-native'
+import React,{useContext, useEffect, useState} from 'react'
+import { StyleSheet, Text, View,SafeAreaView,Image,Modal} from 'react-native'
+import {TouchableOpacity } from 'react-native-gesture-handler'
+import {Context as AuthContext} from '../context/AuthConext';
+
+const PopBox = ({show,hide,datas}) => {
+    const {state}=useContext(AuthContext);
+    // console.log("state",state);
+    // console.log("datas",datas);
+    const Post = state.find( post => post.id === datas);
+    console.log("post",Post);
 
 
-const PopBox = (props) => {
     return (
         <SafeAreaView>
                 <View style={styles.centeredView}>
                 <Modal
                 animationType="slide"
                 transparent={true}
-                visible={props.show}
+                visible={show}
                 onRequestClose={() => {
                     Alert.alert("Modal has been closed.");
                 }}
@@ -17,28 +25,29 @@ const PopBox = (props) => {
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                     <View style={{alignItems:'flex-end'}}>
-                        <TouchableHighlight
-                            onPress={() => {
-                            props.hide(!props.show)
-                            }}
-                        >
-                        <Image style={{width:25,height:25}} source={require('../Image/cancel.png')} />
-                        </TouchableHighlight>
+                            <TouchableOpacity
+                                    onPress={() => {
+                                    hide(!show)
+                                    }}
+                                >
+                             <Image style={{width:25,height:25}} source={require('../Image/cancel.png')}
+                            />
+                            </TouchableOpacity> 
+                             
                     </View>
                     <View style={{flexDirection:'row'}}>
-                                <View style={{flexDirection:'row'}}>
-                                    <View>
-                                    <Image style={{width:100,height:100 ,margin:'2%'}} source={{uri: props.datas.avatar}}/> 
-                                    </View>
-                                    <View style={{justifyContent:'space-around'}}>  
-                                    <Text style={{}}>id:{props.datas.id}</Text>
-                                    <Text style={{}}>First_Name:{props.datas.first_name}</Text>
-                                    <Text style={{}}>Last_Name{props.datas.last_name}</Text>
-                                    <Text style={{}}>Email:{props.datas.email}</Text>
-                                    </View>
-                            </View>
+                        <View>
+                        <Image style={{width:100,height:100 ,margin:'2%'}} source={{uri: Post.avatar}}/> 
+                        </View>
+                        <View style={{justifyContent:'space-around'}}>  
+                        <Text style={{}}>id:{Post.id}</Text>
+                        <Text style={{}}>First_Name:{Post.first_name}</Text>
+                        <Text style={{}}>Last_Name{Post.last_name}</Text>
+                        <Text style={{}}>Email:{Post.email}</Text>
                         </View>
                     </View>
+            </View>
+                    
                 </View>
                 </Modal>
             </View>
